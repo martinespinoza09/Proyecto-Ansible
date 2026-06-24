@@ -1,0 +1,7 @@
+---
+- name: Configuracion base MikroTik
+  hosts: mikrotik
+  gather_facts: false
+
+  roles:
+    - base

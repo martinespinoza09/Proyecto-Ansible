@@ -1,0 +1,36 @@
+---
+
+- name: Configurar OSPF en MikroTik
+  hosts: mikrotik
+  gather_facts: false
+
+  tasks:
+    - name: Configurar OSPF en R1
+      community.routeros.command:
+        commands:
+          - /routing ospf instance add name=default-v2 version=2 router-id=1.1.1.1
+          - /routing ospf area add name=backbone area-id=0.0.0.0 instance=default-v2
+          - /routing ospf interface-template add networks=172.16.12.0/30 area=backbone
+          - /routing ospf interface-template add networks=172.16.13.0/30 area=backbone
+          - /routing ospf interface-template add networks=10.1.1.0/24 area=backbone
+      when: inventory_hostname == "r1"
+
+    - name: Configurar OSPF en R2
+      community.routeros.command:
+        commands:
+          - /routing ospf instance add name=default-v2 version=2 router-id=2.2.2.2
+          - /routing ospf area add name=backbone area-id=0.0.0.0 instance=default-v2
+          - /routing ospf interface-template add networks=172.16.12.0/30 area=backbone
+          - /routing ospf interface-template add networks=172.16.23.0/30 area=backbone
+          - /routing ospf interface-template add networks=10.2.2.0/24 area=backbone
+      when: inventory_hostname == "r2"
+
+    - name: Configurar OSPF en R3
+      community.routeros.command:
+        commands:
+          - /routing ospf instance add name=default-v2 version=2 router-id=3.3.3.3
+          - /routing ospf area add name=backbone area-id=0.0.0.0 instance=default-v2
+          - /routing ospf interface-template add networks=172.16.13.0/30 area=backbone
+          - /routing ospf interface-template add networks=172.16.23.0/30 area=backbone
+          - /routing ospf interface-template add networks=10.3.3.0/24 area=backbone
+      when: inventory_hostname == "r3"

@@ -1,0 +1,29 @@
+# Ansible
+*.retry
+
+# Secrets / credenciales
+vault-password
+*.vault
+secret*
+secrets*
+.env
+
+# Python / cache
+__pycache__/
+*.pyc
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Docker
+docker-data/

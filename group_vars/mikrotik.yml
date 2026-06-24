@@ -1,0 +1,24 @@
+---
+r1_gre_to_r2_local: "198.51.100.1"
+r1_gre_to_r2_remote: "198.51.100.2"
+r1_gre_to_r2_ip: "172.16.12.1/30"
+
+r1_gre_to_r3_local: "198.51.100.5"
+r1_gre_to_r3_remote: "198.51.100.6"
+r1_gre_to_r3_ip: "172.16.13.1/30"
+
+r2_gre_to_r1_local: "198.51.100.2"
+r2_gre_to_r1_remote: "198.51.100.1"
+r2_gre_to_r1_ip: "172.16.12.2/30"
+
+r2_gre_to_r3_local: "198.51.100.9"
+r2_gre_to_r3_remote: "198.51.100.10"
+r2_gre_to_r3_ip: "172.16.23.1/30"
+
+r3_gre_to_r1_local: "198.51.100.6"
+r3_gre_to_r1_remote: "198.51.100.5"
+r3_gre_to_r1_ip: "172.16.13.2/30"
+
+r3_gre_to_r2_local: "198.51.100.10"
+r3_gre_to_r2_remote: "198.51.100.9"
+r3_gre_to_r2_ip: "172.16.23.2/30"

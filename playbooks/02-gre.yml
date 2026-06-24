@@ -1,0 +1,34 @@
+---
+- name: Configurar tuneles GRE
+  hosts: mikrotik
+  gather_facts: false
+  vars_files:
+    - /ansible/vars/gre.yml
+
+  tasks:
+    - name: Configurar GRE en R1
+      community.routeros.command:
+        commands:
+          - /interface gre add name=gre-r1-r2 local-address={{ links['r1']['r2'].local }} remote-address={{ links['r1']['r2'].remote }}
+          - /ip address add address={{ links['r1']['r2'].ip }} interface=gre-r1-r2
+          - /interface gre add name=gre-r1-r3 local-address={{ links['r1']['r3'].local }} remote-address={{ links['r1']['r3'].remote }}
+          - /ip address add address={{ links['r1']['r3'].ip }} interface=gre-r1-r3
+      when: inventory_hostname == "r1"
+
+    - name: Configurar GRE en R2
+      community.routeros.command:
+        commands:
+          - /interface gre add name=gre-r2-r1 local-address={{ links['r2']['r1'].local }} remote-address={{ links['r2']['r1'].remote }}
+          - /ip address add address={{ links['r2']['r1'].ip }} interface=gre-r2-r1
+          - /interface gre add name=gre-r2-r3 local-address={{ links['r2']['r3'].local }} remote-address={{ links['r2']['r3'].remote }}
+          - /ip address add address={{ links['r2']['r3'].ip }} interface=gre-r2-r3
+      when: inventory_hostname == "r2"
+
+    - name: Configurar GRE en R3
+      community.routeros.command:
+        commands:
+          - /interface gre add name=gre-r3-r1 local-address={{ links['r3']['r1'].local }} remote-address={{ links['r3']['r1'].remote }}
+          - /ip address add address={{ links['r3']['r1'].ip }} interface=gre-r3-r1
+          - /interface gre add name=gre-r3-r2 local-address={{ links['r3']['r2'].local }} remote-address={{ links['r3']['r2'].remote }}
+          - /ip address add address={{ links['r3']['r2'].ip }} interface=gre-r3-r2
+      when: inventory_hostname == "r3"

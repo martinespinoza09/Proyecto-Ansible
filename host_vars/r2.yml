@@ -1,0 +1,16 @@
+---
+mgmt_ip: "10.0.0.12"
+lan_cidr: "10.2.2.0/24"
+lan_gw: "10.2.2.1"
+wan1_ip: "198.51.100.2"
+wan1_cidr: "198.51.100.2/30"
+wan2_ip: "198.51.100.9"
+wan2_cidr: "198.51.100.9/30"
+
+gre_to_r1_local: "198.51.100.2"
+gre_to_r1_remote: "198.51.100.1"
+gre_to_r1_tunnel_ip: "172.16.12.2/30"
+
+gre_to_r3_local: "198.51.100.9"
+gre_to_r3_remote: "198.51.100.10"
+gre_to_r3_tunnel_ip: "172.16.23.1/30"
